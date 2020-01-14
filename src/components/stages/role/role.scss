@@ -1,0 +1,52 @@
+@import "../../../assets/styles/__variables";
+
+.role-section {
+  position: relative;
+  margin: 0 auto;
+  padding-left: 4em;
+  padding-right: 4em;
+  padding-bottom: 4em;
+
+  &__logo {
+    display: block;
+    width: 5em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -3em;
+  }
+
+  &__header {
+    padding-top: 2em;
+    text-align: center;
+  }
+
+  &__description {
+    margin: 2em 0;
+  }
+
+  &__action-area {
+    display: flex;
+
+    .action-area__button {
+      background: #000;
+      font-weight: bold;
+      padding: 1.5em 0;
+      flex: 1;
+      color: #fff;
+      font-size: 1.25em;
+      margin: 0 0.5em;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

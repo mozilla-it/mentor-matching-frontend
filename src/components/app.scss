@@ -1,0 +1,70 @@
+@import "../assets/styles/_variables";
+
+body,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+/**
+ * Header Styles
+ */
+
+.header {
+  width: 60%;
+  height: 5rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  .header-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .heading__logo {
+      width: 3em;
+      height: 3em;
+      margin-right: 1em;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+  }
+
+  .header-settings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+    .header-settings__label {
+      cursor: pointer;
+      position: relative;
+      padding-right: 1.25em;
+
+      &::after {
+        content: " ";
+        position: absolute;
+        top: 5px;
+        left: calc(100% - 1em);
+        border-top: 0.75em solid #1b1331;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+      }
+    }
+
+    .settings-dropdown {
+      position: absolute;
+      top: 75%;
+      right: 0;
+      border-radius: $border-radius;
+      padding: 1em;
+      box-shadow: 0px 1px 3px 0px #1b1331;
+    }
+  }
+}

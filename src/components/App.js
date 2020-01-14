@@ -1,27 +1,69 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import classNames from "classnames";
 import { makeMapStateToProps, mapDispatchToProps } from "../store";
-import logo from "../assets/images/logo.svg";
-import "./App.css";
+import RoleStage from "./stages/role/role.stage";
+import DetailsStage from "./stages/details/details.stage";
+import ExpertiseStage from "./stages/expertise/expertise.stage";
+import LearningStage from "./stages/learning/learning.stage";
+
+import "./app.scss";
+
+const logoSvg = require("../assets/images/logo.svg");
 
 class App extends Component {
-  onMessageChanged(e) {
-    this.props.setFirst(e.target.value);
+  constructor(data) {
+    super(data);
+    this.state = {
+      dropdownVisible: false
+    };
+  }
+  onDropdownToggled(e) {
+    this.setState({ dropdownVisible: !this.state.dropdownVisible });
   }
   render() {
-    console.log(this.props);
     return (
-      <div className="app">
-        <header className="app-header">
-          <img src={logo} className="app-logo" alt="logo" />
-          <h1>Hello World</h1>
-          <p>{this.props.matched}</p>
-          <input
-            value={this.props.matched}
-            onChange={this.onMessageChanged.bind(this)}
-          />
+      <main className="app">
+        <header className="header">
+          <aside className="header-heading">
+            <img
+              className="heading__logo"
+              src={logoSvg}
+              altText="Mozilla Mentorship Program Logo"
+            />
+            <h1>Mozilla Mentorship Program</h1>
+          </aside>
+          <aside className="header-settings">
+            <span
+              className={classNames({
+                "header-settings__label": true,
+                active: this.state.dropdownVisible
+              })}
+              onClick={this.onDropdownToggled.bind(this)}
+            >
+              username@mozilla.com
+            </span>
+            {this.state.dropdownVisible ? (
+              <div className="settings-dropdown">
+                <a href="#">Sign out</a>
+              </div>
+            ) : (
+              ""
+            )}
+          </aside>
         </header>
-      </div>
+        <section className="stage-container">
+          <Router>
+            <Route path="/details" component={DetailsStage} />
+            <Route path="/expertise" component={ExpertiseStage} />
+            <Route path="/learning" component={LearningStage} />
+            <Route path="/role" component={RoleStage} />
+            {/* TODO: Check for returning stage */}
+            <Route render={() => <Redirect to="/role" />} />
+          </Router>
+        </section>
+      </main>
     );
   }
 }
