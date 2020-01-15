@@ -46,7 +46,9 @@ class App extends Component {
             </span>
             {this.state.dropdownVisible ? (
               <div className="settings-dropdown">
-                <a href="#">Sign out</a>
+                <a className="logout-link" href="#">
+                  Sign out
+                </a>
               </div>
             ) : (
               ""
