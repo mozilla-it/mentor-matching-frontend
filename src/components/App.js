@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import { makeMapStateToProps, mapDispatchToProps } from "../store";
@@ -30,7 +35,7 @@ class App extends Component {
             <img
               className="heading__logo"
               src={logoSvg}
-              altText="Mozilla Mentorship Program Logo"
+              alt="Mozilla Mentorship Program Logo"
             />
             <h1>Mozilla Mentorship Program</h1>
           </aside>
@@ -57,12 +62,26 @@ class App extends Component {
         </header>
         <section className="stage-container">
           <Router>
-            <Route path="/details" component={DetailsStage} />
-            <Route path="/expertise" component={ExpertiseStage} />
-            <Route path="/learning" component={LearningStage} />
-            <Route path="/role" component={RoleStage} />
-            {/* TODO: Check for returning stage */}
-            <Route render={() => <Redirect to="/role" />} />
+            <Switch>
+              <Route
+                path="/details"
+                component={props => <DetailsStage {...props} />}
+              />
+              <Route
+                path="/expertise"
+                component={props => <ExpertiseStage {...props} />}
+              />
+              <Route
+                path="/learning"
+                component={props => <LearningStage {...props} />}
+              />
+              <Route
+                path="/role"
+                component={props => <RoleStage {...props} />}
+              />
+              {/* TODO: Check for returning stage */}
+              <Route path="/" render={() => <Redirect to="/role" />} />
+            </Switch>
           </Router>
         </section>
       </main>

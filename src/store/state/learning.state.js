@@ -1,1 +1,4 @@
-export const learningState = {};
+export const learningState = {
+  interest: "",
+  changeTrack: false
+};

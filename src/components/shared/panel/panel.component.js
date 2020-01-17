@@ -1,30 +1,7 @@
 import React, { Component } from "react";
 import classNames from "classnames";
+import InnerNav from "../inner-nav/inner-nav.component";
 import "./panel.component.scss";
-
-const InnerNav = () => (
-  <nav className="inner__nav">
-    <div className="nav__node nav__node--n1">
-      <span className="node__label">Role</span>
-      <span className="node__bullet"></span>
-    </div>
-    <hr className="nav__node-edge nav__node-edge--n1" />
-    <div className="nav__node nav__node--n2">
-      <span className="node__label">Details</span>
-      <span className="node__bullet"></span>
-    </div>
-    <hr className="nav__node-edge nav__node-edge--n2" />
-    <div className="nav__node nav__node--n3">
-      <span className="node__label">Areas of Expertise</span>
-      <span className="node__bullet"></span>
-    </div>
-    <hr className="nav__node-edge nav__node-edge--n3" />
-    <div className="nav__node nav__node nav__node--n4">
-      <span className="node__label">Areas for Learning</span>
-      <span className="node__bullet"></span>
-    </div>
-  </nav>
-);
 
 export default class PanelComponent extends Component {
   render() {
@@ -32,10 +9,10 @@ export default class PanelComponent extends Component {
       <section
         className={classNames({
           "panel-component": true,
-          "show-nav": this.props.showNav
+          "show-nav": !this.props.hideNav
         })}
       >
-        {this.props.showNav ? (
+        {!this.props.hideNav ? (
           <aside className="panel-component__meta-nav">
             <a className="meta-nav__link" href="#">
               Back
@@ -46,7 +23,7 @@ export default class PanelComponent extends Component {
         )}
 
         <div className="panel-component__inner">
-          {this.props.showNav ? <InnerNav /> : ""}
+          {!this.props.hideNav ? <InnerNav /> : ""}
           {this.props.children}
         </div>
       </section>

@@ -1,1 +1,3 @@
-export const expertiseState = {};
+export const expertiseState = {
+  expertise: ""
+};

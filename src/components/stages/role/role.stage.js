@@ -1,19 +1,40 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { makeMapStateToProps, mapDispatchToProps } from "../../../store";
+import { appWrapper } from "../../../utils/component.util";
 import PanelComponent from "../../shared/panel/panel.component";
+import { roleTypes } from "../../../store/state/role.state";
 import "./role.scss";
 const logoSvg = require("../../../assets/images/logo.svg");
 
+const actions = [
+  {
+    key: roleTypes.MENTOR,
+    label: "Mentor"
+  },
+  {
+    key: roleTypes.LEARNER_MENTOR,
+    label: "Mentor and Learner"
+  },
+  {
+    key: roleTypes.LEARNER,
+    label: "Learner"
+  }
+];
+
 class RoleStage extends Component {
+  proceedWithRole(role) {
+    this.props.setRole(role);
+    this.props.history.push("/details");
+  }
+
   render() {
+    console.log(this.props.location.pathname);
     return (
-      <PanelComponent>
+      <PanelComponent hideNav={true}>
         <section className="role-section">
           <img
             className="role-section__logo"
             src={logoSvg}
-            altText="Mozilla Mentorship Program Logo"
+            alt="Mozilla Mentorship Program Logo"
           />
           <h2 className="role-section__header">Mozilla Mentorship Program</h2>
           <p className="role-section__description">
@@ -24,9 +45,15 @@ class RoleStage extends Component {
             How would you like to participate?
           </p>
           <footer className="role-section__action-area">
-            <button className="action-area__button">Mentor</button>
-            <button className="action-area__button">Mentor and Learner</button>
-            <button className="action-area__button">Learner</button>
+            {actions.map((action, idx) => (
+              <button
+                key={idx}
+                className="action-area__button"
+                onClick={e => this.proceedWithRole(action.key)}
+              >
+                {action.label}
+              </button>
+            ))}
           </footer>
         </section>
       </PanelComponent>
@@ -34,4 +61,4 @@ class RoleStage extends Component {
   }
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(RoleStage);
+export default appWrapper(RoleStage);

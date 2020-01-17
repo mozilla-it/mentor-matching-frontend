@@ -1,1 +1,7 @@
-export const detailsState = {};
+export const detailsState = {
+  availability: "",
+  org: "",
+  orgLevel: "",
+  outsideOrg: "",
+  timezone: ""
+};

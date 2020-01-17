@@ -25,77 +25,9 @@
   .panel-component__inner {
     box-shadow: 0px 7px 14px 1px #aaa;
     border-radius: $border-radius;
-
-    &.show-nav {
-      padding-left: 5em;
-    }
-  }
-}
-
-.inner__nav {
-  position: relative;
-
-  .nav__node {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-
-    .node__bullet {
-      background: #fff;
-      border: 2px solid #d5d4d5;
-      border-radius: $border-radius;
-      display: block;
-      width: 1em;
-      height: 1em;
-    }
-
-    .node__label {
-      text-align: center;
-      display: block;
-      white-space: nowrap;
-      margin-bottom: 0.5em;
-    }
   }
 
-  .nav__node-edge {
-    width: 30%;
-    position: absolute;
-    z-index: -1;
-    top: 2.25em;
-  }
-
-  .nav__node--n1 {
-    top: 0.5em;
-    left: 0;
-  }
-
-  .nav__node--n2 {
-    top: 0.5em;
-    left: 25%;
-  }
-
-  .nav__node--n3 {
-    top: 0.5em;
-    left: 50%;
-  }
-
-  .nav__node--n4 {
-    top: 0.5em;
-    left: 80%;
-  }
-
-  .nav__node-edge--n1 {
-    left: 2em;
-  }
-
-  .nav__node-edge--n2 {
-    left: calc(25% + 2em);
-  }
-
-  .nav__node-edge--n3 {
-    left: calc(50% + 4em);
+  &.show-nav .panel-component__inner {
+    padding-left: 5em;
   }
 }
