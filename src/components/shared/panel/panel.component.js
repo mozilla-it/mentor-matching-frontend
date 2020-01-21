@@ -1,10 +1,18 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import classNames from "classnames";
 import InnerNav from "../inner-nav/inner-nav.component";
 import "./panel.component.scss";
+import { appWrapper, getLocationNode } from "../../../utils/component.util";
 
-export default class PanelComponent extends Component {
+class PanelComponent extends Component {
+  navigateBack() {
+    this.props.stepBack();
+  }
   render() {
+    if (getLocationNode(this.props.location) !== this.props.getCurrentNode()) {
+      return <Redirect to={`/${this.props.getCurrentNode()}`} />;
+    }
     return (
       <section
         className={classNames({
@@ -14,9 +22,12 @@ export default class PanelComponent extends Component {
       >
         {!this.props.hideNav ? (
           <aside className="panel-component__meta-nav">
-            <a className="meta-nav__link" href="#">
+            <button
+              className="meta-nav__link"
+              onClick={() => this.navigateBack()}
+            >
               Back
-            </a>
+            </button>
           </aside>
         ) : (
           ""
@@ -30,3 +41,5 @@ export default class PanelComponent extends Component {
     );
   }
 }
+
+export default appWrapper(PanelComponent);

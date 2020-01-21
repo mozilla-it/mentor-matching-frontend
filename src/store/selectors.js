@@ -1,8 +1,8 @@
 // import { createSelector } from "reselect";
 
-export const getRole = store => store.role;
+export const getRole = ({ role }) => role;
 
-export const getCurrentNode = store => store.currentNode;
+export const getCurrentNode = ({ currentNode }) => currentNode;
 
 // export const capitalizedMatched = createSelector([getMatched], text =>
 //   text.toUpperCase()

@@ -7,3 +7,10 @@ export function appWrapper(Component) {
     connect(makeMapStateToProps, mapDispatchToProps)(Component)
   );
 }
+
+export function getLocationNode(location) {
+  if (!location) {
+    return "";
+  }
+  return location.pathname.substring(location.pathname.indexOf("/") + 1);
+}

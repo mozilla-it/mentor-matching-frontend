@@ -30,6 +30,18 @@ export default function mentorMatch(state = initialState, action) {
         ...details,
         currentNode: nodeList[2].value
       };
+    case actionTypes.STEP_BACK:
+      let currentIndex = null;
+      for (let i = 0, len = nodeList.length; i < len; i += 1) {
+        if (nodeList[i].value === state.currentNode) {
+          currentIndex = i;
+          break;
+        }
+      }
+      return {
+        ...state,
+        currentNode: nodeList[currentIndex - 1].value
+      };
     default:
       return state;
   }

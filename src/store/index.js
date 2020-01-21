@@ -6,19 +6,20 @@ import { getNodeList } from "../nodes";
 
 export default createStore(mentorMatch);
 
-export function makeMapStateToProps() {
+export function makeMapStateToProps(state) {
   return (state, props) => {
     return {
-      getRole: selectors.getRole(state, props),
-      getCurrentNode: selectors.getCurrentNode(state, props),
+      getRole: () => selectors.getRole(state, props),
+      getCurrentNode: () => selectors.getCurrentNode(state, props),
       getNodeList: () => getNodeList(state.role)
     };
   };
 }
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch, props) {
   return {
     setRole: role => dispatch(actions.setRole(role)),
-    setDetails: details => dispatch(actions.setDetails(details))
+    setDetails: details => dispatch(actions.setDetails(details)),
+    stepBack: () => dispatch(actions.stepBack())
   };
 }

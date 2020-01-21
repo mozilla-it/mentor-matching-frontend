@@ -5,7 +5,7 @@ import "./inner-nav.component.scss";
 
 class InnerNav extends Component {
   getNodeState(nodeValue) {
-    const currentNodeValue = this.props.getCurrentNode;
+    const currentNodeValue = this.props.getCurrentNode();
     const list = this.props.getNodeList().slice(0);
     let nodeValueIndex = null;
     let currentNodeValueIndex = null;
@@ -25,7 +25,7 @@ class InnerNav extends Component {
     return "future";
   }
   getEdgeState(nodeValue) {
-    const currentNodeValue = this.props.getCurrentNode;
+    const currentNodeValue = this.props.getCurrentNode();
     const list = this.props.getNodeList().slice(0);
     let nodeValueIndex = null;
     let currentNodeValueIndex = null;
